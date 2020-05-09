@@ -34,10 +34,8 @@ async fn main() -> std::io::Result<()> {
                     let mut res = fut.await?;
                     res.headers_mut().insert(
                         ACCESS_CONTROL_ALLOW_ORIGIN,
-                        HeaderValue::from_static("https://rollenspielsache.deciduously.com"),
+                        HeaderValue::from_static("*"),
                     );
-                    res.headers_mut()
-                        .insert(VARY, HeaderValue::from_static("Origin"));
                     Ok(res)
                 }
             })
