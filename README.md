@@ -12,4 +12,4 @@ This project defines the web service powering [`rollenspielsache-www`](https://g
 
 ## Usage
 
-`cargo run`.
+Use `make dev` to run the autoreloading dev server.

@@ -1,22 +1,35 @@
+//! rollenspielsache-svc is a backend web service for working with [librollenspielsache](https://docs.rs/librollenspielsache) types
 
-/*
-get '/' do
-'Congrats, you\'re on Rollenspielsache'
-end
+use actix_web::{App, HttpServer};
+use listenfd::ListenFd;
+use log::info;
 
-get '/ping' do
-'pong'
-end
+mod config;
+mod handlers;
 
-get '/roll/:input' do
-input = params['input']
-roller = RollenspielsacheSvc::StringRoller.new(input)
-json = roller.result.to_json
-puts json
-json
-end
-*/
+use crate::{
+    config::{init_logging, OPT},
+    handlers::*,
+};
 
-fn main() {
-    println!("Hello, world!");
+#[actix_rt::main]
+async fn main() -> std::io::Result<()> {
+    // Init logging
+    init_logging(2);
+    // Set URL
+    let addr = format!("{}:{}", OPT.address, OPT.port);
+    // Set up autoreloader
+    let mut listenfd = ListenFd::from_env();
+    // Define server
+    let mut server = HttpServer::new(|| App::new().service(index).service(pong).service(roll));
+    // Catch reload
+    server = if let Some(l) = listenfd.take_tcp_listener(0).unwrap() {
+        server.listen(l)?
+    } else {
+        server.bind(&addr)?
+    };
+
+    // Run it
+    info!("Mounting server at {}", &addr);
+    server.run().await
 }
