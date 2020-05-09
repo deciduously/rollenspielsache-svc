@@ -3,7 +3,28 @@ name = "rollenspielsache-svc"
 version = "0.1.0"
 authors = ["Ben Lovy <ben@deciduously.com>"]
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "API for the Rollenspielsache"
+homepage = "https://github.com/deciduously/rollenspielsache-svc"
+include = ["**/*.rs", "Cargo.toml"]
+keywords = ["fun"]
+license = "BSD-3-Clause"
+readme = "README.md"
+repository = "https://github.com/deciduously/rollenspielsache-svc"
 
 [dependencies]
+
+actix-web = "2.0"
+actix-rt = "1.1"
+lazy_static ="1.4"
+log = "0.4"
+pretty_env_logger = "0.4"
+librollenspielsache = "0.1.2"
+listenfd = "0.3"
+serde = "1.0"
+serde_derive = "1.0"
+structopt = "0.3"
+toml = "0.5"
+
+[dev-dependencies]
+
+pretty_assertions = "0.6"
