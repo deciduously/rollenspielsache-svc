@@ -1,6 +1,6 @@
 [package]
 name = "rollenspielsache-svc"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Ben Lovy <ben@deciduously.com>"]
 edition = "2018"
 description = "API for the Rollenspielsache"
@@ -13,6 +13,7 @@ repository = "https://github.com/deciduously/rollenspielsache-svc"
 
 [dependencies]
 
+actix-service = "1.0"
 actix-web = "2.0"
 actix-rt = "1.1"
 lazy_static ="1.4"
