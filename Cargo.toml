@@ -1,6 +1,6 @@
 [package]
 name = "rollenspielsache-svc"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Ben Lovy <ben@deciduously.com>"]
 edition = "2018"
 description = "API for the Rollenspielsache"

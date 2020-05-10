@@ -1,5 +1,5 @@
 PKG=rollenspielsache-svc
-VERSION=0.1.2
+VERSION=0.1.3
 LOCALTAG=$(PKG):$(VERSION)
 REMOTE=deciduously0
 REMOTETAG=$(REMOTE)/$(LOCALTAG)
