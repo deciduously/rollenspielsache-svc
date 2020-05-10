@@ -32,10 +32,8 @@ async fn main() -> std::io::Result<()> {
                 let fut = srv.call(req);
                 async {
                     let mut res = fut.await?;
-                    res.headers_mut().insert(
-                        ACCESS_CONTROL_ALLOW_ORIGIN,
-                        HeaderValue::from_static("*"),
-                    );
+                    res.headers_mut()
+                        .insert(ACCESS_CONTROL_ALLOW_ORIGIN, HeaderValue::from_static("*"));
                     Ok(res)
                 }
             })

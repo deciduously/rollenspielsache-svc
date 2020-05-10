@@ -1,6 +1,6 @@
 //! The Handlers module defines the endpoints
 
-use actix_web::{get, web, HttpResponse, Responder, Result};
+use actix_web::{get, http, web, HttpResponse, Responder, Result};
 use log::info;
 use rollenspielsache::dice::Roll;
 use std::str::FromStr;
@@ -8,7 +8,13 @@ use std::str::FromStr;
 /// Placeholder index - all usage should be via one of the other endpoints
 #[get("/")]
 async fn index() -> impl Responder {
-    HttpResponse::Ok().body("Congrats, you're on Rollenspielsache")
+    HttpResponse::Found()
+        .header(
+            http::header::LOCATION,
+            "https://rollenspielsache-www.now.sh/",
+        )
+        .finish()
+        .into_body()
 }
 
 /// Just confirms a valid connection
