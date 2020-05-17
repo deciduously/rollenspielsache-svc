@@ -1372,6 +1372,8 @@ dependencies = [
  "log",
  "pretty_assertions",
  "pretty_env_logger",
+ "r2d2_redis",
+ "redis",
  "serde",
  "serde_derive",
  "structopt",

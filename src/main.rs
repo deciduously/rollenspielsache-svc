@@ -3,13 +3,17 @@
 use actix_service::Service;
 use actix_web::{
     http::{header::*, HeaderValue},
-    App, HttpServer,
+    web, App, HttpServer,
 };
 use listenfd::ListenFd;
 use log::info;
 
 mod config;
 mod handlers;
+mod redis;
+
+#[cfg(test)]
+mod test;
 
 use crate::{
     config::{init_logging, OPT},
@@ -37,9 +41,9 @@ async fn main() -> std::io::Result<()> {
                     Ok(res)
                 }
             })
-            .service(index)
-            .service(pong)
-            .service(roll)
+            .route("/", web::get().to(index))
+            .route("/ping", web::get().to(pong))
+            .route("/roll/{input}", web::get().to(roll))
     });
     // Catch reload
     server = if let Some(l) = listenfd.take_tcp_listener(0).unwrap() {
